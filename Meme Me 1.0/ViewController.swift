@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // MARK:- Outlets
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topTextFiled: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -17,26 +18,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     let textDelegate = TextFieldDelegate()
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.topTextFiled.delegate = textDelegate
         self.bottomTextField.delegate = textDelegate
         self.shareButton.isEnabled = false
-        topTextFiled.textAlignment = .center
-        let memeTextAttributes:[String: Any] = [
-            NSAttributedStringKey.strokeColor.rawValue: UIColor.black/* TODO: fill in appropriate UIColor */,
-            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white/* TODO: fill in appropriate UIColor */,
-            NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedStringKey.strokeWidth.rawValue: -3.0/* TODO: fill in appropriate Float */]
-        topTextFiled.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
+        // Text specifications
+        setTextAttributes()
     }
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -47,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
-
+    // MARK: image related methods
     @IBAction func pickAnImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -73,18 +62,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(controller, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // image is picked
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             memeImageView.image = image
             self.shareButton.isEnabled = true
-            print("done")
-            //dismiss(animated: true, completion: nil)
         }
         dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("canceld")
         dismiss(animated: true, completion: nil)
     }
+    // MARK: Keyboard related methods
     func subscribeToKeyboardNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
@@ -97,25 +85,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     @objc func keyboardWillShow(_ notification:Notification) {
-        //if self.bottomTextField
+        //move the view up only for the bottom text
         if self.bottomTextField.isFirstResponder == true {
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     @objc func keyboardWillHide(_ notification:Notification) {
-        
-        // view.frame.origin.y -= getKeyboardHeight(notification)
+        // move the view down
         view.frame.origin.y = 0
     }
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
-        
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
+    // MARK: Meme
+    struct Meme {
+        var topText: String
+        var bottomText: String
+        var originalImage: UIImage
+        var memedImage: UIImage
+    }
     func generateMemedImage() -> UIImage {
-        
-        // TODO: Hide toolbar and navbar
+        //  Hide toolbar and navbar
         topToolbar.isHidden = true
         bottomToolbar.isHidden = true
         // Render view to an image
@@ -123,8 +115,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
-        // TODO: Show toolbar and navbar
+        // Show toolbar and navbar
         topToolbar.isHidden = false
         bottomToolbar.isHidden = false
         return memedImage
@@ -132,6 +123,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func saveMeme() {
      let meme = Meme(topText: self.topTextFiled.text!, bottomText: self.bottomTextField.text!, originalImage: self.memeImageView.image!, memedImage: generateMemedImage())
     }
-
+    // MARK: Text attributes
+    func setTextAttributes() {
+        let memeTextAttributes:[String: Any] = [
+            NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+            NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedStringKey.strokeWidth.rawValue: -3.0]
+        topTextFiled.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextFiled.textAlignment = .center
+        bottomTextField.textAlignment = .center
+    }
 }
 

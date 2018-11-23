@@ -12,11 +12,12 @@ import UIKit
 class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        // clear text when tapped
         textField.text = ""
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // dismiss kyboard when return is pressed
         textField.resignFirstResponder()
-        
         return true;
     }
 }
