@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK:- Outlets
+    // MARK: - Outlets
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topTextFiled: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
-    // MARK: image related methods
+    // MARK: - image related methods
     @IBAction func pickAnImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -56,7 +56,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         controller.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
             if completed == true {
                 self.saveMeme()
-                print("Meme is saved!")
             }
         }
         present(controller, animated: true, completion: nil)
@@ -72,7 +71,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    // MARK: Keyboard related methods
+    // MARK: - Keyboard related methods
     func subscribeToKeyboardNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
@@ -99,7 +98,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
-    // MARK: Meme
+    // MARK: - Meme
     struct Meme {
         var topText: String
         var bottomText: String
@@ -123,7 +122,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func saveMeme() {
      let meme = Meme(topText: self.topTextFiled.text!, bottomText: self.bottomTextField.text!, originalImage: self.memeImageView.image!, memedImage: generateMemedImage())
     }
-    // MARK: Text attributes
+    // MARK: - Text attributes
     func setTextAttributes() {
         let memeTextAttributes:[String: Any] = [
             NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
