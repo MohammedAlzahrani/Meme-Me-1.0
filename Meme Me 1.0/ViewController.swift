@@ -16,6 +16,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     let textDelegate = TextFieldDelegate()
+    struct Meme {
+        var topText: String
+        var bottomText: String
+        var originalImage: UIImage
+        var memedImage: UIImage
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,7 +59,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     @IBAction func shareMemedImage(_ sender: Any) {
-        let memedImage = generateMemedImage()
+        let meme = Meme(topText: self.topTextFiled.text!, bottomText: self.bottomTextField.text!, originalImage: self.memeImageView.image!, memedImage: generateMemedImage())
+        let memedImage = meme.memedImage
         let controller = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         present(controller, animated: true, completion: nil)
     }
