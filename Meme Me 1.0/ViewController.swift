@@ -15,6 +15,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     let textDelegate = TextFieldDelegate()
     struct Meme {
         var topText: String
@@ -27,6 +28,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view, typically from a nib.
         self.topTextFiled.delegate = textDelegate
         self.bottomTextField.delegate = textDelegate
+        self.shareButton.isEnabled = false
         topTextFiled.textAlignment = .center
         let memeTextAttributes:[String: Any] = [
             NSAttributedStringKey.strokeColor.rawValue: UIColor.black/* TODO: fill in appropriate UIColor */,
@@ -59,15 +61,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     @IBAction func shareMemedImage(_ sender: Any) {
-        let meme = Meme(topText: self.topTextFiled.text!, bottomText: self.bottomTextField.text!, originalImage: self.memeImageView.image!, memedImage: generateMemedImage())
-        let memedImage = meme.memedImage
+        let memedImage = generateMemedImage()
         let controller = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        /*The code for completionWithItemsHandler is taken from https://stackoverflow.com/questions/39968210/swift-share-with-function-on-completion */
+        controller.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
+            if completed == true {
+                self.saveMeme()
+                print("Meme is saved!")
+            }
+        }
         present(controller, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             memeImageView.image = image
-            
+            self.shareButton.isEnabled = true
             print("done")
             //dismiss(animated: true, completion: nil)
         }
@@ -120,6 +128,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topToolbar.isHidden = false
         bottomToolbar.isHidden = false
         return memedImage
+    }
+    func saveMeme() {
+     let meme = Meme(topText: self.topTextFiled.text!, bottomText: self.bottomTextField.text!, originalImage: self.memeImageView.image!, memedImage: generateMemedImage())
     }
 
 }

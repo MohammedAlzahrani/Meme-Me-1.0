@@ -35,7 +35,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePd-zK-P54" userLabel="TopToolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="e7i-j9-NDX">
+                                    <barButtonItem systemItem="action" id="e7i-j9-NDX" userLabel="Share">
                                         <connections>
                                             <action selector="shareMemedImage:" destination="BYZ-38-t0r" id="82X-o5-fit"/>
                                         </connections>
@@ -81,6 +81,7 @@
                         <outlet property="bottomToolbar" destination="No1-Wp-WGO" id="ou1-6s-ekt"/>
                         <outlet property="cameraButton" destination="KI6-eG-ZMV" id="qyc-Tc-Mid"/>
                         <outlet property="memeImageView" destination="7k4-oK-Eai" id="GdA-9V-mSQ"/>
+                        <outlet property="shareButton" destination="e7i-j9-NDX" id="Gx4-PF-ZaP"/>
                         <outlet property="topTextFiled" destination="hl5-tL-d6V" id="cyw-uM-YRA"/>
                         <outlet property="topToolbar" destination="ePd-zK-P54" id="bg4-ZU-LZf"/>
                     </connections>
