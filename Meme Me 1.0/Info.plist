@@ -6,6 +6,8 @@
 	<string>Just Testing</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Just Testing</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Just Testing</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
