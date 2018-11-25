@@ -38,16 +38,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     // MARK: - image related methods
     @IBAction func pickAnImage(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        presentImagePickerWith(sourceType: UIImagePickerControllerSourceType.photoLibrary)
     }
     @IBAction func takePicture(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        presentImagePickerWith(sourceType: UIImagePickerControllerSourceType.camera)
     }
     @IBAction func shareMemedImage(_ sender: Any) {
         let memedImage = generateMemedImage()
@@ -70,6 +64,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        present(imagePicker, animated:true, completion:nil)
     }
     // MARK: - Keyboard related methods
     func subscribeToKeyboardNotifications() {
@@ -99,12 +99,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return keyboardSize.cgRectValue.height
     }
     // MARK: - Meme
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-    }
     func generateMemedImage() -> UIImage {
         //  Hide toolbar and navbar
         topToolbar.isHidden = true

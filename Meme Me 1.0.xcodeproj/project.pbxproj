@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CDB0334D21AAF157001AD271 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB0334C21AAF157001AD271 /* Meme.swift */; };
 		CDCB099821A6E32900F9D0E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB099721A6E32900F9D0E2 /* AppDelegate.swift */; };
 		CDCB099A21A6E32900F9D0E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB099921A6E32900F9D0E2 /* ViewController.swift */; };
 		CDCB099D21A6E32900F9D0E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCB099B21A6E32900F9D0E2 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CDB0334C21AAF157001AD271 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		CDCB099421A6E32900F9D0E2 /* Meme Me 1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Me 1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCB099721A6E32900F9D0E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDCB099921A6E32900F9D0E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				CDCB099721A6E32900F9D0E2 /* AppDelegate.swift */,
 				CDCB099921A6E32900F9D0E2 /* ViewController.swift */,
 				CDCB09A921A6E6ED00F9D0E2 /* TextFieldDelegate.swift */,
+				CDB0334C21AAF157001AD271 /* Meme.swift */,
 				CDCB099B21A6E32900F9D0E2 /* Main.storyboard */,
 				CDCB099E21A6E32900F9D0E2 /* Assets.xcassets */,
 				CDCB09A021A6E32900F9D0E2 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDCB099A21A6E32900F9D0E2 /* ViewController.swift in Sources */,
+				CDB0334D21AAF157001AD271 /* Meme.swift in Sources */,
 				CDCB099821A6E32900F9D0E2 /* AppDelegate.swift in Sources */,
 				CDCB09AA21A6E6ED00F9D0E2 /* TextFieldDelegate.swift in Sources */,
 			);
