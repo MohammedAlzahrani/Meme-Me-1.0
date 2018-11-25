@@ -18,14 +18,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     let textDelegate = TextFieldDelegate()
+    let memeTextAttributes:[String: Any] = [
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedStringKey.strokeWidth.rawValue: -3.0]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.topTextFiled.delegate = textDelegate
-        self.bottomTextField.delegate = textDelegate
         self.shareButton.isEnabled = false
         // Text specifications
-        setTextAttributes()
+        configureTextFields(textField: topTextFiled, withText: "TOP")
+        configureTextFields(textField: bottomTextField, withText: "BOTTOM")
     }
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -101,32 +105,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Meme
     func generateMemedImage() -> UIImage {
         //  Hide toolbar and navbar
-        topToolbar.isHidden = true
-        bottomToolbar.isHidden = true
+        configureToolbars(true)
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         // Show toolbar and navbar
-        topToolbar.isHidden = false
-        bottomToolbar.isHidden = false
+        configureToolbars(false)
         return memedImage
     }
     func saveMeme() {
      let meme = Meme(topText: self.topTextFiled.text!, bottomText: self.bottomTextField.text!, originalImage: self.memeImageView.image!, memedImage: generateMemedImage())
     }
-    // MARK: - Text attributes
-    func setTextAttributes() {
-        let memeTextAttributes:[String: Any] = [
-            NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
-            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
-            NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedStringKey.strokeWidth.rawValue: -3.0]
-        topTextFiled.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextFiled.textAlignment = .center
-        bottomTextField.textAlignment = .center
+    // MARK: - Text configuration
+    func configureTextFields(textField :UITextField, withText text: String){
+        textField.delegate = self.textDelegate
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.center
+        textField.text = text
+    }
+    // MARK: - Toolbars configurations
+    func configureToolbars(_ isHidden: Bool) {
+        self.topToolbar.isHidden = isHidden
+        self.bottomToolbar.isHidden = isHidden
     }
 }
 
