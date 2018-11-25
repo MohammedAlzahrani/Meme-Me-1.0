@@ -52,13 +52,13 @@
                                 <rect key="frame" x="5" y="69" width="365" height="557"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="hl5-tL-d6V">
-                                <rect key="frame" x="115" y="73" width="145" height="17"/>
+                                <rect key="frame" x="10" y="73" width="355" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="PSo-hu-Ena">
-                                <rect key="frame" x="81" y="597" width="212" height="17"/>
+                                <rect key="frame" x="10" y="597" width="355" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -66,18 +66,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.23716896770000001" green="0.30756169560000002" blue="0.36171108480000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PSo-hu-Ena" secondAttribute="trailing" constant="82" id="0n1-xv-lNR"/>
+                            <constraint firstItem="PSo-hu-Ena" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="0n1-xv-lNR"/>
                             <constraint firstItem="ePd-zK-P54" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4jZ-M0-IsL"/>
                             <constraint firstItem="No1-Wp-WGO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6QP-5c-GM3"/>
                             <constraint firstItem="No1-Wp-WGO" firstAttribute="top" secondItem="PSo-hu-Ena" secondAttribute="bottom" constant="18" id="96s-ju-4FN"/>
                             <constraint firstItem="hl5-tL-d6V" firstAttribute="top" secondItem="ePd-zK-P54" secondAttribute="bottom" constant="18" id="Ff7-Sq-rZS"/>
-                            <constraint firstItem="hl5-tL-d6V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="115" id="KhW-94-PUo"/>
+                            <constraint firstItem="hl5-tL-d6V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="KhW-94-PUo"/>
                             <constraint firstItem="ePd-zK-P54" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OTU-X8-HX9"/>
                             <constraint firstItem="No1-Wp-WGO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="PMp-33-GJp"/>
-                            <constraint firstItem="PSo-hu-Ena" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="81" id="SfU-Qh-iGu"/>
+                            <constraint firstItem="PSo-hu-Ena" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="SfU-Qh-iGu"/>
                             <constraint firstItem="No1-Wp-WGO" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Xgh-Te-zkd"/>
                             <constraint firstItem="7k4-oK-Eai" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-5" id="aUu-Gb-Bkb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hl5-tL-d6V" secondAttribute="trailing" constant="115" id="jUR-iI-aAK"/>
+                            <constraint firstItem="hl5-tL-d6V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="jUR-iI-aAK"/>
                             <constraint firstItem="ePd-zK-P54" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ldo-J8-UZi"/>
                             <constraint firstItem="7k4-oK-Eai" firstAttribute="top" secondItem="ePd-zK-P54" secondAttribute="bottom" constant="14" id="tZJ-67-AZ5"/>
                             <constraint firstItem="7k4-oK-Eai" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="xyd-zd-1AV"/>
